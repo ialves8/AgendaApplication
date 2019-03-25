@@ -1,0 +1,36 @@
+﻿@page "{id:int?}/{handler?}"
+@model AgendaApplication.Pages.TipoContatos.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<br />
+<h2>Editar tipo de categoria</h2>
+<hr />
+
+<form method="post">
+    <div class="form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <input type="hidden" asp-for="TipoContato.Id" />
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="TipoContato.Tipo" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="TipoContato.Tipo" class="form-control" />
+            </div>
+            <span asp-validation-for="TipoContato.Tipo" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Atualizar" class="btn btn-sm btn-primary" />
+            <a asp-page="Index" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-list"></span> De volta à lista </a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

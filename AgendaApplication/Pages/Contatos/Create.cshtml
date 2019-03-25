@@ -1,0 +1,70 @@
+﻿@page "{id:int?}/{handler?}"
+@model AgendaApplication.Pages.Contatos.CreateModel
+@using AgendaApplication.Extensions
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2>Cadastrar um novo contato</h2>
+<hr />
+
+<form method="post">
+    <div class="form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.Pessoa.NomePessoa" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <input asp-for="ContatoViewModel.Contato.Pessoa.NomePessoa" placeholder="Informe o nome da pessoa"class="form-control" />
+            </div>
+            <span asp-validation-for="ContatoViewModel.Contato.Pessoa.NomePessoa" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.NomeContato" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <input asp-for="ContatoViewModel.Contato.NomeContato" placeholder="Informe o nome do contato" class="form-control" />
+            </div>
+            <span asp-validation-for="ContatoViewModel.Contato.NomeContato" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.TipoContatoId" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <select asp-for="ContatoViewModel.Contato.TipoContatoId" asp-items="@Model.ContatoViewModel.TipoContato.ToSelectListItems(Model.ContatoViewModel.Contato.TipoContatoId)" class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.DescricaoContato" id="price" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <input asp-for="ContatoViewModel.Contato.DescricaoContato" placeholder="Informe o contato. Exemplo: Telefone ou E-mail" class="form-control" />
+            </div>
+            <span asp-validation-for="ContatoViewModel.Contato.DescricaoContato" class="text-danger"></span>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Cadastrar" class="btn btn-sm btn-primary" />
+            <a asp-page="Index" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-list"></span> De volta à lista </a>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <a asp-page="/TipoContatos/Create">Cadastrar tipo de contato?</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

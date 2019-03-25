@@ -1,0 +1,57 @@
+﻿@page "{id:int?}/{handler?}"
+@model AgendaApplication.Pages.Contatos.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h2>Excluir contato</h2>
+<hr />
+
+<form method="post">
+    <div class="form-border row">
+        <div class="col-sm-8">
+            <input type="hidden" asp-for="Contato.Id" />
+            <fieldset disabled>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label asp-for="Contato.Pessoa.NomePessoa" class="custom-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="Contato.Pessoa.NomePessoa" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label asp-for="Contato.NomeContato" class="custom-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="Contato.NomeContato" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label asp-for="Contato.TipoContatoId" class="custom-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="Contato.TipoContato.Tipo" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label asp-for="Contato.DescricaoContato" class="custom-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input asp-for="Contato.DescricaoContato" class="form-control" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <br />
+
+        <div class="form-group row col-sm-12">
+            <input type="submit" value="Excluir" class="btn btn-sm btn-danger" />
+            <a asp-page="Index" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-list"></span> De volta à lista </a>
+        </div>
+    </div>
+</form>

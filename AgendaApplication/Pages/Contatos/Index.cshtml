@@ -1,0 +1,98 @@
+﻿@page "{id:int?}/{handler?}"
+@model AgendaApplication.Pages.Contatos.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+@if (Model.Message != null)
+{
+    <div class="alert alert-info alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @Model.Message
+    </div>
+}
+
+<br />
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <h2>Lista de Contatos</h2>
+    </div>
+</div>
+<br />
+
+<form method="get">
+    <div style="height:60px;">
+        <div class="col-sm-3" style="padding-top:20px;">
+            <a asp-page="Create" type="button" class="btn btn-sm btn-primary">
+                <span class="glyphicon glyphicon-plus"></span>
+                &nbsp; Cadastrar novo contato
+            </a>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <b>Procurar</b>
+                    <label class="radio-inline">@Html.RadioButton("option", "nome")Nome Contato</label>
+                    <label class="radio-inline">@Html.RadioButton("option", "contato")Contato</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pull-right">
+                <button type="submit" nome="submit" value="Procurar" class="btn btn-sm btn-primary">
+                    <span class="glyphicon glyphicon-search"></span> Procurar
+                </button>
+            </div>
+            <div class="pull-right">
+                @Html.Editor("search", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-border">
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.Contato[0].Pessoa.NomePessoa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Contato[0].NomeContato)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Contato[0].TipoContato.Tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Contato[0].DescricaoContato)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Contato)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.Pessoa.NomePessoa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.NomeContato)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.TipoContato.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.DescricaoContato)
+                    </td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"> Editar </span></a>
+
+                        <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"> Excluir </span></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>
+

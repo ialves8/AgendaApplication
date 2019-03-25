@@ -1,0 +1,65 @@
+﻿@page "{id:int?}/{handler?}"
+@model AgendaApplication.Pages.Contatos.EditModel
+@using AgendaApplication.Extensions
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<br />
+<h2>Editar contato</h2>
+<hr />
+
+<form method="post">
+    <div class="form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ContatoViewModel.Contato.Id" />
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.Pessoa.NomePessoa" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <input asp-for="ContatoViewModel.Contato.Pessoa.NomePessoa" class="form-control" />
+            </div>
+            <span asp-validation-for="ContatoViewModel.Contato.Pessoa.NomePessoa" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.NomeContato" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <input asp-for="ContatoViewModel.Contato.NomeContato" class="form-control" />
+            </div>
+            <span asp-validation-for="ContatoViewModel.Contato.NomeContato" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.TipoContatoId" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <select asp-for="ContatoViewModel.Contato.TipoContatoId" asp-items="@Model.ContatoViewModel.TipoContato.ToSelectListItems(Model.ContatoViewModel.Contato.TipoContatoId)" class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="ContatoViewModel.Contato.DescricaoContato" id="price" class="custom-label"></label>
+            </div>
+            <div class="col-sm-5">
+                <input asp-for="ContatoViewModel.Contato.DescricaoContato" class="form-control" />
+            </div>
+            <span asp-validation-for="ContatoViewModel.Contato.DescricaoContato" class="text-danger"></span>
+        </div>
+        <br />
+
+        <div class="form-group row col-sm-12">
+            <input type="submit" value="Atualizar" class="btn btn-sm btn-primary" />
+            <a asp-page="Index" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-list"></span> De volta à lista </a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
